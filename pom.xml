@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+		<!-- starter parent 내부에 많은 의존성들이 기재되어있으며, starter parent 안에 있는 spring dependency에 더 많은 기본적이고 자주사용되는 의존성 설정들이 매우 많이 존재 -->
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.2.RELEASE</version>
@@ -25,18 +26,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
+				<!-- 내장 tomcat을 제거 -->
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
+		<!-- 내장 tomcat 대신 undertow 사용 설정 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 
+		<!-- lombok 사용 시 ide에 추가적인 install 필요 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -49,6 +53,7 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- properties로 부터 값을 읽으들여 초기화 생성되는 Bean 의존성 추가 -->
 		<dependency>
 			<groupId>me.ht</groupId>
 			<artifactId>ht-spring-boot-starter</artifactId>
@@ -58,6 +63,7 @@
 	</dependencies>
 
 	<build>
+	<!-- maven plugin 필수 -->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
